@@ -49,13 +49,25 @@ weather %>%
         ggplot() +
         geom_col(aes(x=origin, y=temp_media))
 @
-
 \end{frame}
 
 \begin{frame}
 \frametitle{Exercício 1: Praticando o Latex}
 \textbf{5.}Verifique que o seu documento compila sem erro para PDF.
 Ajuste o seu script “.Rnw” acima para gerar uma apresentação do class ‘beamer’ e coloque o texto, a equação, a tabela, e o gráfico em slides diferentes. Compile para PDF de novo.
+\end{frame}
+
+\begin{frame}
+\frametitle{Extra}
+\textbf{6.}Adicione mais um gráfico ao seu script, mostrando a umidade média por mês do banco de dados de weather.
+
+<<echo=F, warning=F, message=F,fig.height=2, fig.width=4>>=
+weather %>% 
+        group_by(month) %>%
+        summarise(humid_media = mean(humid, na.rm = T)) %>%
+        ggplot() +
+        geom_col(aes(x=month, y=humid_media))
+@
 \end{frame}
 
 \end{document}
