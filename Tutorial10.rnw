@@ -1,0 +1,61 @@
+\documentclass{beamer}
+%rodar: tinytex:::install_yihui_pkgs()
+\author{Mariana Ohira Hashimoto}
+\title{Tutorial 10}
+
+\begin{document}
+
+\begin{frame}
+
+\maketitle
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Exercício 1: Praticando o Latex}
+\textbf{1.} Usando o formato “.Rnw”, crie um PDF com texto simples usando pelo menos cinco das formatações acima (\textbf{bold}, \textit{itálico}, \underline{etc.}).
+\end{frame}
+
+\begin{frame}
+\frametitle{Exercício 1: Praticando o Latex}
+\textbf{2.}Adicione a famosa equação do teorema de Pitágoras no seu documento.
+$$a^2 + b^2 = c^2$$
+\end{frame}
+
+\begin{frame}
+\frametitle{Exercício 1: Praticando o Latex}
+\textbf{3.}Adicione uma tabela simples no PDF usando o banco de dados de weather, resumindo o total de precipitação por mês.
+
+<<echo=F, warning=F, message=F>>=
+library(tidyverse)
+library(nycflights13)
+library(knitr)
+
+weather %>% 
+        group_by(month) %>% 
+        tally(precip) %>% 
+        kable()
+@
+\end{frame}
+
+\begin{frame}
+\frametitle{Exercício 1: Praticando o Latex}
+\textbf{4.}Adicione um gráfico simples usando o banco de dados weather, ilustrando temperatura média por aeroporto.
+
+<<echo=F, warning=F, message=F,fig.height=2, fig.width=4>>=
+weather %>% 
+        group_by(origin) %>%
+        summarise(temp_media = mean(temp, na.rm = T)) %>%
+        ggplot() +
+        geom_col(aes(x=origin, y=temp_media))
+@
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Exercício 1: Praticando o Latex}
+\textbf{5.}Verifique que o seu documento compila sem erro para PDF.
+Ajuste o seu script “.Rnw” acima para gerar uma apresentação do class ‘beamer’ e coloque o texto, a equação, a tabela, e o gráfico em slides diferentes. Compile para PDF de novo.
+\end{frame}
+
+\end{document}
